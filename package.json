@@ -1,5 +1,5 @@
 {
-  "name": "rr-rsc",
+  "name": "react-router-rsc-bun",
   "private": true,
   "type": "module",
   "scripts": {
