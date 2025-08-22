@@ -1,7 +1,7 @@
-import { compress } from "hono/compress";
+import { serve } from "@hono/node-server";
 import { serveStatic } from "@hono/node-server/serve-static";
 import { Hono } from "hono";
-import { serve } from "@hono/node-server";
+import { compress } from "hono/compress";
 import "@ungap/compression-stream/poly";
 
 import build from "./dist/rsc/index.js";
@@ -20,7 +20,7 @@ app.use("*", (c) => {
   return build(c.req.raw);
 });
 
-const PORT = Number.parseInt(process.env.PORT || "3000");
+const PORT = Number.parseInt(process.env.PORT || "3000", 10);
 
 serve(
   {
