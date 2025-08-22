@@ -1,6 +1,5 @@
-import { serve } from "@hono/node-server";
-import { serveStatic } from "@hono/node-server/serve-static";
 import { Hono } from "hono";
+import { serveStatic } from "hono/bun";
 import { compress } from "hono/compress";
 import "@ungap/compression-stream/poly";
 
@@ -8,26 +7,23 @@ import build from "./dist/rsc/index.js";
 
 const app = new Hono();
 
-app.use(compress());
-
-app.use("*", serveStatic({ root: "dist/client" }));
+app.use("/assets/*", compress());
+app.use("/assets/*", serveStatic({ root: "./dist/client" }));
+app.use("/favicon.ico", serveStatic({ root: "./dist/client" }));
 
 app.get("/.well-known/appspecific/com.chrome.devtools.json", (c) => {
-  c.text("Not Found", 404);
+  return c.text("Not Found", 404);
 });
 
-app.use("*", (c) => {
-  return build(c.req.raw);
-});
+app.use("*", async (c) => {
+  const response = await build(c.req.raw);
 
+  // Create a new Response with the content to ensure proper finalization
+  return response;
+});
 const PORT = Number.parseInt(process.env.PORT || "3000", 10);
 
-serve(
-  {
-    fetch: app.fetch,
-    port: PORT,
-  },
-  (info) => {
-    console.log(`Server is running on http://localhost:${info.port}`);
-  }
-);
+export default {
+  port: PORT,
+  fetch: app.fetch,
+};
