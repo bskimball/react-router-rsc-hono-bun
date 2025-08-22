@@ -26,14 +26,10 @@ A modern template for exploring React Server Components (RSC) with React Router,
 
 ### Installation
 
-Install the dependencies with Bun (recommended) or npm:
+Install the dependencies with Bun:
 
 ```bash
-# With Bun (recommended for faster installs)
 bun install
-
-# Or with npm
-npm install
 ```
 
 ### Development
@@ -41,7 +37,7 @@ npm install
 Start the development server with HMR:
 
 ```bash
-npm run dev
+bun run dev
 ```
 
 Your application will be available at `http://localhost:5173`.
@@ -51,7 +47,7 @@ Your application will be available at `http://localhost:5173`.
 Create a production build:
 
 ```bash
-npm run build
+bun run build
 ```
 
 ## Running Production Build
@@ -59,7 +55,7 @@ npm run build
 Run the production server (powered by Hono and Bun):
 
 ```bash
-npm start
+bun run start
 ```
 
 The production server uses:
@@ -95,7 +91,7 @@ This project uses **Biome** for fast, consistent code formatting and linting:
 Format your code:
 
 ```bash
-npm run format
+bun run format
 ```
 
 ### Linting
@@ -103,7 +99,7 @@ npm run format
 Check for code issues:
 
 ```bash
-npm run lint
+bun run lint
 ```
 
 ### Combined Check
@@ -111,7 +107,7 @@ npm run lint
 Run both formatting and linting:
 
 ```bash
-npm run check
+bun run check
 ```
 
 Biome is configured to:
