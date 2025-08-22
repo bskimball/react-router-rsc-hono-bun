@@ -15,11 +15,8 @@ app.get("/.well-known/appspecific/com.chrome.devtools.json", (c) => {
   return c.text("Not Found", 404);
 });
 
-app.use("*", async (c) => {
-  const response = await build(c.req.raw);
-
-  // Create a new Response with the content to ensure proper finalization
-  return response;
+app.use("*", (c) => {
+  return build(c.req.raw);
 });
 const PORT = Number.parseInt(process.env.PORT || "3000", 10);
 
