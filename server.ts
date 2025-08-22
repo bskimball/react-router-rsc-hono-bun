@@ -3,7 +3,11 @@ import { serveStatic } from "hono/bun";
 import { compress } from "hono/compress";
 import "@ungap/compression-stream/poly";
 
-import build from "./dist/rsc/index.js";
+// Dynamic import with type annotation
+type BuildFunction = (request: Request) => Promise<Response>;
+const build: BuildFunction = (
+  await import("./dist/rsc/index.js" satisfies string)
+).default;
 
 const app = new Hono();
 
