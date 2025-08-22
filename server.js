@@ -18,9 +18,8 @@ app.get("/.well-known/appspecific/com.chrome.devtools.json", (c) => {
 app.use("*", (c) => {
   return build(c.req.raw);
 });
-const PORT = Number.parseInt(process.env.PORT || "3000", 10);
 
 export default {
-  port: PORT,
+  port: Number.parseInt(process.env.PORT || "3000", 10),
   fetch: app.fetch,
 };
