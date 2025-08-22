@@ -9,10 +9,10 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@remix-run/node-fetch-server": "0.8.0",
-    "compression": "^1.8.0",
+    "@hono/node-server": "^1.19.0",
+    "@ungap/compression-stream": "^0.2.0",
     "cross-env": "^7.0.3",
-    "express": "^5.1.0",
+    "hono": "^4.9.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-router": "7.7.0"

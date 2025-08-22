@@ -17,4 +17,9 @@ export default defineConfig({
     }),
     devtoolsJson(),
   ],
+  define: {
+    "import.meta.env.NODE_ENV": JSON.stringify(
+      process.env.NODE_ENV || "development"
+    ),
+  },
 });
