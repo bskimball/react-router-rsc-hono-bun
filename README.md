@@ -24,6 +24,17 @@ A modern template for exploring React Server Components (RSC) with React Router,
 
 - **Node.js 22.6+** - Required for native TypeScript support with type stripping
 
+## Quick Start
+
+Create a new project using this template:
+
+```bash
+npx degit bskimball/rr-rsc my-app
+cd my-app
+npm install
+npm run dev
+```
+
 ## Getting Started
 
 ### Installation
