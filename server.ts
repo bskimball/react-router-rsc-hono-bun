@@ -1,13 +1,12 @@
+import { serve } from "@hono/node-server";
 import { Hono } from "hono";
-import { serveStatic } from "hono/bun";
+import { serveStatic } from "@hono/node-server/serve-static";
 import { compress } from "hono/compress";
-import "@ungap/compression-stream/poly"; // Polyfill for streaming compression
 
 // Dynamically import the RSC build output and type it as a handler
 type BuildFunction = (request: Request) => Promise<Response>;
-const build: BuildFunction = (
-  await import("./dist/rsc/index.js" satisfies string)
-).default;
+const build = (await import("./dist/rsc/index.js" as any))
+  .default as BuildFunction;
 
 // Create the Hono app instance
 const app = new Hono();
@@ -28,8 +27,8 @@ app.use("*", (c) => {
   return build(c.req.raw);
 });
 
-// Export the server config for Bun (port and fetch handler)
-export default {
-  port: Number.parseInt(process.env.PORT || "3000", 10),
-  fetch: app.fetch,
-};
+// Start the Node server
+const port = Number.parseInt(process.env.PORT || "3000", 10);
+serve({ fetch: app.fetch, port }, (info) => {
+  console.log(`Server running on http://localhost:${info.port}`);
+});

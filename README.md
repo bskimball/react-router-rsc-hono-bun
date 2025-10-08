@@ -2,7 +2,7 @@
 
 ⚠️ **EXPERIMENTAL**: This template demonstrates React Server Components with React Router. This is experimental technology and not recommended for production use.
 
-A modern template for exploring React Server Components (RSC) with React Router, powered by Vite and served with Hono. Built for speed with Bun and formatted with Biome.
+A modern template for exploring React Server Components (RSC) with React Router, powered by Vite and served with Hono using Node.js native TypeScript support. Formatted with Biome.
 
 ## Features
 
@@ -14,22 +14,24 @@ A modern template for exploring React Server Components (RSC) with React Router,
 - 🔒 TypeScript by default
 - 🎉 TailwindCSS for styling
 - 🌐 **Hono** - Fast, lightweight web framework for the server
-- ⚡ **Bun** - Fast JavaScript runtime for package management and production server
 - 🧹 **Biome** - Fast formatter and linter for consistent code style
 - 📖 [React Router docs](https://reactrouter.com/)
 - 📚 [React Server Components guide](https://reactrouter.com/how-to/react-server-components)
 - 🔥 [Hono documentation](https://hono.dev/)
-- 🏃‍♂️ [Bun documentation](https://bun.sh/)
 - ⚡ [Biome documentation](https://biomejs.dev/)
+
+## Requirements
+
+- **Node.js 22.6+** - Required for native TypeScript support with type stripping
 
 ## Getting Started
 
 ### Installation
 
-Install the dependencies with Bun:
+Install the dependencies:
 
 ```bash
-bun install
+npm install
 ```
 
 ### Development
@@ -37,7 +39,7 @@ bun install
 Start the development server with HMR:
 
 ```bash
-bun run dev
+npm run dev
 ```
 
 Your application will be available at `http://localhost:5173`.
@@ -47,20 +49,20 @@ Your application will be available at `http://localhost:5173`.
 Create a production build:
 
 ```bash
-bun run build
+npm run build
 ```
 
 ## Running Production Build
 
-Run the production server (powered by Hono and Bun):
+Run the production server (powered by Hono and Node.js):
 
 ```bash
-bun run start
+npm start
 ```
 
 The production server uses:
 
-- **Bun** as the JavaScript runtime for optimal performance
+- **Node.js 22.6+** with native TypeScript support (type stripping enabled by default)
 - **Hono** as the web framework for fast, efficient request handling
 - Compression middleware and static asset serving
 - Customizable port via the `PORT` environment variable (defaults to 3000)
@@ -91,7 +93,7 @@ This project uses **Biome** for fast, consistent code formatting and linting:
 Format your code:
 
 ```bash
-bun run format
+npm run format
 ```
 
 ### Linting
@@ -99,7 +101,7 @@ bun run format
 Check for code issues:
 
 ```bash
-bun run lint
+npm run lint
 ```
 
 ### Combined Check
@@ -107,7 +109,7 @@ bun run lint
 Run both formatting and linting:
 
 ```bash
-bun run check
+npm run check
 ```
 
 Biome is configured to:
@@ -123,4 +125,4 @@ This template comes with [Tailwind CSS](https://tailwindcss.com/) already config
 
 ---
 
-Built with ❤️ using React Router, Hono, Bun, and Biome.
+Built with ❤️ using React Router, Hono, Node.js, and Biome.
