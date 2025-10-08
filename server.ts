@@ -13,8 +13,7 @@ const app = new Hono();
 
 // Serve static assets with compression for better performance
 app.use("/assets/*", compress());
-app.use("/assets/*", serveStatic({ root: "./dist/client" }));
-app.use("/favicon.ico", serveStatic({ root: "./dist/client" }));
+app.use("/*", serveStatic({ root: "./dist/client" }));
 
 // Special route for Chrome DevTools integration (returns 404 for this template)
 app.get("/.well-known/appspecific/com.chrome.devtools.json", (c) => {
