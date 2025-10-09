@@ -103,7 +103,7 @@ This template includes three entry points:
 - **`entry.ssr.tsx`** - Server-side rendering entry point
 - **`entry.browser.tsx`** - Client-side hydration entry point
 
-The production server (`server.js`) uses Hono to:
+The production server (`server.ts`) uses Hono to:
 
 - Serve static assets from the build output
 - Handle compression with built-in middleware
