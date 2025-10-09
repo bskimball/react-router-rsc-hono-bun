@@ -78,6 +78,23 @@ The production server uses:
 - Compression middleware and static asset serving
 - Customizable port via the `PORT` environment variable (defaults to 3000)
 
+## Docker
+
+Build and run with Docker (uses Node.js 24 Alpine):
+
+```bash
+docker build -t rr-rsc .
+docker run -p 3000:3000 rr-rsc
+```
+
+Or with custom port:
+
+```bash
+docker run -p 8080:8080 -e PORT=8080 rr-rsc
+```
+
+The Dockerfile uses a multi-stage build with `node:24-alpine` for a minimal production image.
+
 ## Understanding React Server Components
 
 This template includes three entry points:
