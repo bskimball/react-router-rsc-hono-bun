@@ -4,11 +4,10 @@ import {
 	encodeReply,
 	setServerCallback,
 } from "@vitejs/plugin-rsc/browser";
-import { StrictMode, startTransition } from "react";
+import { startTransition, StrictMode } from "react";
 import { hydrateRoot } from "react-dom/client";
 import {
 	unstable_createCallServer as createCallServer,
-	type DataRouter,
 	unstable_getRSCStream as getRSCStream,
 	unstable_RSCHydratedRouter as RSCHydratedRouter,
 	type unstable_RSCPayload as RSCServerPayload,
@@ -42,11 +41,24 @@ createFromReadableStream<RSCServerPayload>(getRSCStream()).then((payload) => {
 				formState,
 			},
 		);
+
+		// Expose router to window for HMR
+		if (payload.type === "render") {
+			// @ts-expect-error - router exists on render payload
+			(window as any).__router = payload.router;
+		}
 	});
 });
 
 if (import.meta.hot) {
 	import.meta.hot.on("rsc:update", () => {
-		(window as unknown as { __router: DataRouter }).__router.revalidate();
+		const router = (window as any).__router;
+		if (router?.revalidate) {
+			console.log("[HMR] Server component updated, revalidating...");
+			router.revalidate();
+		} else {
+			console.log("[HMR] Router not found, reloading page...");
+			window.location.reload();
+		}
 	});
 }
